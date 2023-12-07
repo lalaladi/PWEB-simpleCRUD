@@ -1,31 +1,19 @@
 <?php
+// Include file koneksi.php untuk menghubungkan ke database
 include "koneksi.php";
 
+// Periksa jika parameter ID dikirim melalui URL
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    // Mencegah SQL Injection
-    $sql = $pdo->prepare("SELECT foto FROM siswa WHERE id=:id");
-    $sql->bindParam(':id', $id);
-    $sql->execute();
-    $data = $sql->fetch();
+    // Query untuk menghapus data siswa berdasarkan ID
+    $delete = $pdo->prepare("DELETE FROM siswa WHERE id=:id");
+    $delete->bindParam(':id', $id);
+    $delete->execute(); // Eksekusi query delete
 
-    if($data) {
-        // Hapus foto jika ada di folder
-        if(is_file("images/".$data['foto'])) {
-            unlink("images/".$data['foto']);
-        }
-
-        // Hapus data dari database
-        $delete = $pdo->prepare("DELETE FROM siswa WHERE id=:id");
-        $delete->bindParam(':id', $id);
-        $delete->execute();
-
-        header("location: index.php"); // Redirect ke halaman index.php
-        exit();
-    } else {
-        echo "Data tidak ditemukan. <a href='index.php'>Kembali</a>";
-    }
+    // Redirect kembali ke halaman utama (index.php)
+    header("location: index.php");
+    exit();
 } else {
     echo "ID tidak ditemukan. <a href='index.php'>Kembali</a>";
 }

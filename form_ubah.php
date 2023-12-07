@@ -63,7 +63,7 @@
   // Ambil data NIS yang dikirim oleh index.php melalui URL
   $id = $_GET['id'];
   // Query untuk menampilkan data siswa berdasarkan ID yang dikirim
-  $sql = $pdo->prepare("SELECT * FROM siswa WHERE id=:id");
+  $sql = $pdo->prepare("SELECT id, nis, nama, jenis_kelamin, telp, alamat FROM siswa WHERE id=:id");
   $sql->bindParam(':id', $id);
   $sql->execute(); // Eksekusi query insert
   $data = $sql->fetch(); // Ambil semua data dari hasil eksekusi $sql
@@ -99,12 +99,6 @@
       <tr>
         <td>Alamat</td>
         <td><textarea name="alamat"><?php echo $data['alamat']; ?></textarea></td>
-      </tr>
-      <tr>
-        <td>Foto</td>
-        <td>
-          <input type="file" name="foto">
-        </td>
       </tr>
     </table>
     <hr>

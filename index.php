@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Aplikasi CRUD + Upload Gambar dengan PHP</title>
+  <title>Aplikasi CRUD dengan PHP</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -62,7 +62,7 @@
   </style>
 </head>
 <body>
-  <h1><center>Data Siswa</center></h1>
+  <h2><center>Data Siswa</center></h2>
   <h1><center>UNIVERSITAS PERANGKAT LUNAK</center></h1>
 
 <div class="container">
@@ -71,16 +71,12 @@
       <button id="button">
         <a href="form_simpan.html">Tambah Data</a>
       </button>
-      <button id="button">
-        <a href="proses_pdf.php">pdf</a>
-      </button>
     </nav>
   </div>
 </div>
 
   <table border="1" width="100%">
   <tr>
-    <th><center>Foto</center></th>
     <th><center>NIS</center></th>
     <th><center>Nama</center></th>
     <th><center>Jenis Kelamin</center></th>
@@ -96,7 +92,6 @@
   $sql->execute(); // Eksekusi querynya
   while($data = $sql->fetch()){ // Ambil semua data dari hasil eksekusi $sql
     echo "<tr>";
-    echo "<td><img src='images/".$data['foto']."' width='100' height='100'></td>";
     echo "<td>".$data['nis']."</td>";
     echo "<td>".$data['nama']."</td>";
     echo "<td>".$data['jenis_kelamin']."</td>";
